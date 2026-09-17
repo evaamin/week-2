@@ -3,11 +3,25 @@ import numpy as np
 
 # update/add code below ...
 
+def coin_combos(n):
+    # generator: outputs each valid penny & nickel pair for n cents
+    nickels = 0
+    while nickels * 5 <= n:
+        pennies = n - nickels * 5
+        yield (pennies, nickels)
+        nickels += 1
+
 def ways(n):
-    return None
+    # count how many pairs the generator outputs for # of ways
+    count = 0
+    for combo in coin_combos(n):
+        count += 1
+    return count
 
 def lowest_score(names, scores):
-    return None
+    # argmin gives the index of the lowest score so you can look up the name
+    return names[np.argmin(scores)]
 
 def sort_names(names, scores):
-    return None
+    # argsort gives indices low-to-high so you can reverse them for descending order
+    return names[np.argsort(scores)[::-1]]

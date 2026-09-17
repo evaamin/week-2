@@ -11,6 +11,7 @@ def coin_combos(n):
         yield (pennies, nickels)
         nickels += 1
 
+
 def ways(n):
     # count how many pairs the generator outputs for # of ways
     count = 0
@@ -18,10 +19,17 @@ def ways(n):
         count += 1
     return count
 
+
 def lowest_score(names, scores):
+    # convert first, so plain lists work the same as arrays
+    names = np.array(names)
     # argmin gives the index of the lowest score so you can look up the name
     return names[np.argmin(scores)]
 
+
 def sort_names(names, scores):
+    names = np.array(names)
     # argsort gives indices low-to-high so you can reverse them for descending order
-    return names[np.argsort(scores)[::-1]]
+    sorted_names = names[np.argsort(scores)[::-1]]
+    # give back plain list of names
+    return sorted_names.tolist()
